@@ -41,9 +41,9 @@ function App() {
 	return (
 		<div className="App">
 			{!state.matches("winner") ? (
-				<header className="App-header">
-					<Score state={state} />
+				<header className="App-header noselect">
 					<GameContainer state={state} send={send} />
+					<Score state={state} />
 				</header>
 			) : (
 				<div className="App-header">Winner 👑</div>

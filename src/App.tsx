@@ -1,11 +1,11 @@
 import { Howl, Howler } from "howler";
-import Room from "./components/Room";
-import Score from "./components/Score";
+import GameContainer from "./components/GameContainer/GameContainer";
+import Score from "./components/Score/Score";
 import { useMachine } from "@xstate/react";
 import { tableOrderMachine } from "./orderMachine";
 import { useEffect } from "react";
 import "./App.css";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 function App() {
 	const [state, send] = useMachine(tableOrderMachine);
@@ -38,7 +38,7 @@ function App() {
 		<div className="App">
 			<header className="App-header">
 				<Score state={state} />
-				<Room state={state} send={send} />
+				<GameContainer state={state} send={send} />
 			</header>
 		</div>
 	);

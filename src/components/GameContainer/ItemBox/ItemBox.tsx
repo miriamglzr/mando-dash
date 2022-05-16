@@ -22,7 +22,6 @@ type ItemBoxProps = {
 	item: { id: number; name: string; icon: string };
 	constraintsRef: any; //reference to the dropzone
 	blackHole: DOMRect;
-	//	itemVariants: any;
 	setRemovedItem: (item: any) => void;
 	status: string;
 };
@@ -31,7 +30,6 @@ export default function ItemBox({
 	item,
 	constraintsRef,
 	blackHole,
-	//	itemVariants,
 	setRemovedItem,
 	status,
 }: ItemBoxProps) {

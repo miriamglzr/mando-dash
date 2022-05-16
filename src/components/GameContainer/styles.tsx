@@ -24,12 +24,6 @@ export const OrderPosition = styled.div`
 	top: 53%;
 `;
 
-export const BlackHolePosition = styled.div`
-	position: absolute;
-	left: 38%;
-	top: 50%;
-`;
-
 export const Poligon = styled.div`
 	margin-top: 15px;
 	width: 8px;
@@ -47,13 +41,6 @@ export const OrderWrapper = styled.div`
 	width: fit-content;
 	background-color: #ffffff;
 	max-width: 235px;
-`;
-export const ScoreStyle = styled.span`
-	margin-buttom: 3px;
-	margin-right: 10px;
-	justify-content: flex-end;
-	display: flex;
-	font-size: 16px;
 `;
 
 export const StartButton = styled(Button)`

@@ -1,6 +1,6 @@
 import { Image } from "antd";
 import { motion } from "framer-motion";
-import blackHole from "../assets/black-hole.png";
+import blackHole from "../../../assets/black-hole.png";
 import { useRef, useEffect } from "react";
 import { BlackHolePosition } from "./styles";
 

@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from "react";
-import { foodItems } from "../utils/getItems";
+import { foodItems } from "../../utils/getItems";
 import { motion } from "framer-motion";
 import { Dropzone, StartButton } from "./styles";
-import Order from "./Order";
-import BlackHole from "./BlackHole";
-import ItemBox from "./ItemBox";
+import Order from "./Order/Order";
+import BlackHole from "./BlackHole/BlackHole";
+import ItemBox from "./ItemBox/ItemBox";
 
 const listVariants = {
 	hidden: {
@@ -23,29 +23,12 @@ const listVariants = {
 	},
 };
 
-// const itemVariants = {
-// 	hidden: {
-// 		opacity: 0,
-// 		scale: 0,
-// 		transition: {
-// 			ease: "easeIn",
-// 		},
-// 	},
-// 	visible: {
-// 		opacity: 1,
-// 		scale: 1,
-// 		transition: {
-// 			mass: 3,
-// 		},
-// 	},
-// };
-
 type Props = {
 	state: any;
 	send: (action: string) => void;
 };
 
-export default function Room({ state, send }: Props) {
+export default function GameContainer({ state, send }: Props) {
 	const constraintsRef = useRef(null);
 	const [rendered, setRendered] = useState(false);
 	const [items, setItems] = useState(foodItems);
@@ -55,6 +38,9 @@ export default function Room({ state, send }: Props) {
 	const { status, failedNumber, successNumber } = state.context;
 
 	useEffect(() => {
+		if (state.matches("start")) {
+			setRendered(false);
+		}
 		const rearrangeItems = async () => {
 			await setRendered(false);
 			if (status === "waiting") {
@@ -66,6 +52,7 @@ export default function Room({ state, send }: Props) {
 			}
 		};
 		rearrangeItems();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [status]);
 
 	return (

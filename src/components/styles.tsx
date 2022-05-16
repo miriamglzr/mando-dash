@@ -46,6 +46,7 @@ export const OrderWrapper = styled.div`
 	z-index: 1;
 	width: fit-content;
 	background-color: #ffffff;
+	max-width: 235px;
 `;
 export const ScoreStyle = styled.span`
 	margin-buttom: 3px;

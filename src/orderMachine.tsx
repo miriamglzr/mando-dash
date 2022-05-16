@@ -1,14 +1,16 @@
 import { createMachine, assign } from "xstate";
-import { getRandomItems } from "./utils/getItems";
+import { getRandomItems, Item } from "./utils/getItems";
 
 interface Context {
 	status: string;
 	seconds: number;
 	waitingLength: number;
-	orderItems: string[];
+	orderItems: Item[];
 	successNumber: number;
 	failedNumber: number;
 	quantity: number;
+	level: number;
+	highScore: number;
 }
 
 export const tableOrderMachine = createMachine<Context>({
@@ -22,6 +24,8 @@ export const tableOrderMachine = createMachine<Context>({
 		successNumber: 0,
 		failedNumber: 0,
 		quantity: 3,
+		level: 1,
+		highScore: 0,
 	},
 	states: {
 		start: {
@@ -34,6 +38,10 @@ export const tableOrderMachine = createMachine<Context>({
 				status: (context) => "failed",
 				failedNumber: (context) => context.failedNumber + 1,
 				orderItems: (context) => [],
+				level: (context) => 1,
+				quantity: (context) => 3,
+				highScore: (context) =>
+					context.level > context.highScore ? context.level : context.highScore,
 			}),
 			on: {
 				START: {
@@ -43,11 +51,11 @@ export const tableOrderMachine = createMachine<Context>({
 		},
 		waiting: {
 			entry: assign({
-				seconds: (context) => 10, // set seconds
+				// set seconds
+				seconds: (context) => (context.level > 1 ? 10 + context.level : 10),
 				status: (context) => "waiting",
-				orderItems: () =>
-					// would like to set acording to the quantity but Xstate had a typescript nasty bug
-					getRandomItems(3),
+				quantity: (context) => 3 + context.level,
+				orderItems: (context) => getRandomItems(context.quantity),
 			}),
 			invoke: {
 				id: "tickInterval",
@@ -76,6 +84,7 @@ export const tableOrderMachine = createMachine<Context>({
 							status: (context) => "success",
 							orderItems: (context) => [],
 							successNumber: (context) => context.successNumber + 1,
+							level: (context) => context.level + 1,
 						}),
 					],
 				},

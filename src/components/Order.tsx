@@ -31,6 +31,7 @@ export default function Order({
 	useEffect(() => {
 		checkItem(removedItem);
 		setRemovedItem(null);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [removedItem]);
 
 	const playSound = (sound: any) => {

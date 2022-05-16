@@ -1,3 +1,9 @@
+export type Item = {
+	id: number;
+	name: string;
+	icon: string;
+};
+
 export const foodItems = [
 	{ id: 1, name: "burger", icon: "🍔" },
 	{ id: 2, name: "soda", icon: "🥤" },

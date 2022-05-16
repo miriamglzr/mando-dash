@@ -42,14 +42,8 @@ function App() {
 		<div className="App">
 			{!state.matches("winner") ? (
 				<header className="App-header noselect">
+					<Score state={state} />
 					<GameContainer state={state} send={send} />
-					<div
-						className={`${
-							window.innerWidth <= 760 ?? "w-75 justify-content-center"
-						} d-flex w-100 row `}
-					>
-						<Score state={state} />
-					</div>
 				</header>
 			) : (
 				<div className="App-header">Winner 👑</div>

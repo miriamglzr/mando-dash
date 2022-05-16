@@ -24,7 +24,7 @@ export const tableOrderMachine = createMachine<Context>({
 		successNumber: 0,
 		failedNumber: 0,
 		quantity: 3,
-		level: 24,
+		level: 1,
 		highScore: 0,
 	},
 	states: {

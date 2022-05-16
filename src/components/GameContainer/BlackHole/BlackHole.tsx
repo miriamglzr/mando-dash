@@ -15,7 +15,7 @@ export default function BlackHole({ setBlackHole }: Props) {
 		//send blackhole area to parent
 		const area = blackHoleRef.current?.getBoundingClientRect();
 		setBlackHole(area);
-	}, []);
+	}, [setBlackHole]);
 
 	return (
 		<div>

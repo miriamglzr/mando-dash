@@ -30,16 +30,24 @@ function App() {
 		if (status === "success") {
 			playSound("/assets/success.mp3");
 		}
+		if (state.matches("winner")) {
+			playSound("/assets/winner.mp3");
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [status]);
 
 	Howler.volume(1.0);
 
 	return (
 		<div className="App">
-			<header className="App-header">
-				<Score state={state} />
-				<GameContainer state={state} send={send} />
-			</header>
+			{!state.matches("winner") ? (
+				<header className="App-header">
+					<Score state={state} />
+					<GameContainer state={state} send={send} />
+				</header>
+			) : (
+				<div className="App-header">Winner 👑</div>
+			)}
 		</div>
 	);
 }

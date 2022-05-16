@@ -24,7 +24,7 @@ export const tableOrderMachine = createMachine<Context>({
 		successNumber: 0,
 		failedNumber: 0,
 		quantity: 3,
-		level: 1,
+		level: 24,
 		highScore: 0,
 	},
 	states: {
@@ -77,17 +77,31 @@ export const tableOrderMachine = createMachine<Context>({
 					},
 				],
 				MISTAKE: "failed",
-				SUCCESS: {
-					target: "start",
-					actions: [
-						assign({
-							status: (context) => "success",
-							orderItems: (context) => [],
-							successNumber: (context) => context.successNumber + 1,
-							level: (context) => context.level + 1,
-						}),
-					],
-				},
+				SUCCESS: [
+					{
+						cond: (context) => context.level === 24,
+						target: "winner",
+					},
+					{
+						target: "start",
+						actions: [
+							assign({
+								status: (context) => "success",
+								orderItems: (context) => [],
+								successNumber: (context) => context.successNumber + 1,
+								level: (context) => context.level + 1,
+							}),
+						],
+					},
+				],
+			},
+		},
+		winner: {
+			entry: assign({
+				status: (context) => "winner",
+			}),
+			on: {
+				START: "start",
 			},
 		},
 	},

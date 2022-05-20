@@ -1,5 +1,6 @@
 import { ScoreStyle } from "./styles";
 import { useEffect, useState } from "react";
+import Instructions from "../Instructions/Instructions";
 
 type Props = {
 	state: any;
@@ -31,6 +32,7 @@ export default function Score({ state }: Props) {
 					success: {successNumber}
 				</ScoreStyle>
 				<ScoreStyle>fails: {failedNumber}</ScoreStyle>
+				<Instructions />
 			</div>
 		</div>
 	);
